@@ -17,11 +17,12 @@ class ProfileLoginScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0,/* vertical: 30.0*/),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              SizedBox(height: 30),
               Container(
                 width: 34.0,
                 height: 34.0,
@@ -60,13 +61,12 @@ class ProfileLoginScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 36.0),
-
               TextField(
                 textAlign: TextAlign.center,
                 onChanged: (value) {
                   var phone =value;
                 },
-                decoration: kTextFieldDecoration.copyWith(hintText: 'Телефон', ),
+                decoration: kTextFieldDecoration.copyWith(hintText: 'Телефон' ),
                 style: TextStyle(color: StColor.mainColor),
                         //hintStyle: Colors.accents
               ),

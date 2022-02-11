@@ -26,11 +26,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-      title: "Aqua Workout App",
-      themeMode: ThemeMode.dark,
+      title: "Beautician App",
+      themeMode: ThemeMode.light,
       theme: ThemeData.dark().copyWith(
         primaryColor: Colors.blue,
-        hintColor: Colors.white,
+        hintColor: Colors.blue,
         textTheme: const TextTheme(subtitle1: TextStyle(color: Colors.white)),
       ),
 
