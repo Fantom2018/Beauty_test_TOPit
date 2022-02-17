@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:beautician_app/widgets/color_constants.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 
@@ -27,11 +28,12 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
       title: "Beautician App",
-      themeMode: ThemeMode.light,
-      theme: ThemeData.dark().copyWith(
-        primaryColor: Colors.blue,
-        hintColor: Colors.blue,
-        textTheme: const TextTheme(subtitle1: TextStyle(color: Colors.white)),
+     // themeMode: ThemeMode.light,
+
+      theme: ThemeData().copyWith(
+        primaryColor: Colors.white,
+        //hintColor: Colors.blue,
+
       ),
 
       defaultTransition: Transition.cupertino,
