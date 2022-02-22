@@ -24,11 +24,14 @@ dependencies:
   date_picker_timeline: ^1.2.3
   syncfusion_flutter_calendar: ^19.4.50
   calendar_appbar: ^0.0.6
+  image_picker: ^0.8.4+9
+  image_cropper: ^1.5.0
+  flutter_image_compress: ^1.1.0
+  star_menu: ^2.1.1
   #table_calendar: ^3.0.3
   #dio: ^4.0.4
   #json_annotation: ^4.4.0
   #json_serializable: ^6.1.4
-  #flutter_bloc: ^8.0.1
   #equatable: ^2.0.3
 
   #dio_http_formatter: ^2.1.0

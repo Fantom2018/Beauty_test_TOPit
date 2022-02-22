@@ -1,7 +1,7 @@
 
 import 'package:beautician_app/routs/pages_routs.dart';
 import 'package:beautician_app/screens/login_lk_screen.dart';
-//import 'package:beautician_app/screens/master_profile_screen.dart';
+import 'package:beautician_app/screens/master_screens/master_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

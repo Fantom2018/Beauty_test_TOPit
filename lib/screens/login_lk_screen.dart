@@ -2,7 +2,7 @@ import 'package:beautician_app/widgets/color_constants.dart';
 import 'package:beautician_app/widgets/constants.dart';
 import 'package:beautician_app/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
-import 'beautician_profile_screen.dart';
+
 import 'package:get/get.dart';
 
 
@@ -77,7 +77,7 @@ class ProfileLoginScreen extends StatelessWidget {
                   child: TextField(
                     textAlign: TextAlign.center,
                     onChanged: (value) {
-                      var phone =value;
+                      //var phone =value;
                     },
                     decoration: kTextFieldDecoration.copyWith(hintText: 'Телефон' ),
                     style: TextStyle(

@@ -1,23 +1,22 @@
 
-
-import 'package:beautician_app/getx_all/controllers/month_dd_menu_controller.dart';
-import 'package:beautician_app/widgets/color_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
-class MasterProfileScreen extends StatelessWidget {
+import '../../getx_all/controllers/avatar_images_controller.dart';
+import '../../getx_all/controllers/month_dd_menu_controller.dart';
+import '../../routs/app_routes.dart';
+import '../../widgets/color_constants.dart';
+
+
+class MasterProfileScreen extends GetView<AvatarImagesController>{
   static const List _monthsName =[
     'Январь', 'Февраль', 'Март', 'Апрель', 'Май','Июнь','Июль','Август','Сентябрь','Ноябрь','Декабрь'
   ];
   late String _monthsVal;
   MonthController monthController = MonthController();
-   MasterProfileScreen({Key? key}) : super(key: key);
-
-
-
-
-
+  MasterProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,25 +34,30 @@ class MasterProfileScreen extends StatelessWidget {
           centerTitle: true,
 
           actions:  <Widget>[
-            Text('Выйти',
-                style: TextStyle(fontSize: 17, fontFamily: 'SF-Pro-Text-Regular', color: Color(0xFFE64646),
-            ),
-              textAlign: TextAlign.center,
-            ),
+            Center(
+              child: TextButton(
+                  child: const Text('Выйти',
+                      style: TextStyle(fontSize: 17, fontFamily: 'SF-Pro-Text-Regular', color: Color(0xFFE64646),
+                      ),
+                      textAlign: TextAlign.center),
+                  onPressed: () { Get.back(result: true); }
+              ),
+            ),     /// Color(0xFFE64646)
+            SizedBox(width: 10.0)
           ],
 
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0),
-         child: Column(
+          child: Column(
             children: [
               SizedBox(height: 20),
               Container(
                 padding: EdgeInsets.all(12.0),
                 height: 96,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16.0),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16.0),
                     boxShadow: const [
                       BoxShadow(blurStyle: BlurStyle.normal,
                           color: StColor.shadowColor,
@@ -68,7 +72,7 @@ class MasterProfileScreen extends StatelessWidget {
                     Container(
                       width: 72, height: 72,padding: EdgeInsets.only(top: 23.0),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(36.0),
+                        borderRadius: BorderRadius.circular(36.0),
                         color: StColor.blue_Color,
                       ),
                       child: Text(
@@ -83,10 +87,10 @@ class MasterProfileScreen extends StatelessWidget {
 
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Екатерина',
+                              'Екатерина',
                               style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600, color: Colors.black)
                           ),
                           Text('Иванова',
@@ -101,7 +105,9 @@ class MasterProfileScreen extends StatelessWidget {
                     const SizedBox(width: 16.0),
                     Spacer(),
                     Container(
-                      child: Icon(Icons.arrow_right),
+                      child: IconButton( onPressed: () {
+                        Get.toNamed(Routes.MASTER_PERSONAL);
+                      }, icon: const Icon(Icons.arrow_right, color: StColor.purple9_Color,)),
                     )
                   ],
                 ),
@@ -126,9 +132,10 @@ class MasterProfileScreen extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                            'Расчет зарплаты за - Октябрь',
+                          'Расчет зарплаты за - Октябрь',
                           style: TextStyle(fontSize: 17,fontWeight: FontWeight.w600, color: Colors.black),
                         ),
+
                         /*Obx( () => DropdownButton(
                           value:  _monthsVal,
                           onChanged: (newValue){
@@ -143,24 +150,30 @@ class MasterProfileScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 24.0),
-                    Row(
-                      children: [
-                        Container(
-                          width: 28, height: 28,
-                          decoration: BoxDecoration(
+                    Container(
+                      height: 28,
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 28, height: 28,
+                            decoration: BoxDecoration(
 
+                            ),
                           ),
-                        ),
-                        SizedBox(width: 12.0,),
-                        Text(
-                          'Калькулятор',
-                          style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500, color: Colors.black),
-                        ),
+                          SizedBox(width: 12.0,),
+                          Text(
+                            'Калькулятор',
+                            style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500, color: Colors.black),
+                          ),
+                          Spacer(),
+                          IconButton( onPressed: () {
+                            Get.toNamed(Routes.MASTER_CALCULATOR);
+                          }, icon: const Icon(Icons.arrow_right, color: StColor.purple9_Color,)),
 
-
-                      ],
+                        ],
+                      ),
                     ),
-                    SizedBox(height: 16.0),
+                    // SizedBox(height: 16.0),
                     SizedBox(height: 16.0),
 
                     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
