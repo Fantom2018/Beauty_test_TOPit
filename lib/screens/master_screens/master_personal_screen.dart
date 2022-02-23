@@ -58,14 +58,17 @@ class MasterPersonalScreen extends GetView<AvatarImagesController> {
                           Obx(
                                 () => controller.selectedImagePath.value == ''
                                 ? const Text(
-                              'Select image from camera/galley',
+                              'Select image ',
                               style: TextStyle(fontSize: 20),
                             )
-                                : Image.file(
+                                : ClipOval(
+                                  child: Image.file(
                               File(controller.selectedImagePath.value),
-                              width: double.infinity,
-                              height: 300,
+                                      height: 120,
+                                      width: 110,
+                                      fit: BoxFit.cover
                             ),
+                                ),
                           ),
 
 
@@ -108,63 +111,16 @@ class MasterPersonalScreen extends GetView<AvatarImagesController> {
                         ),
                       ),
                       onTap: (){
-                        Get.defaultDialog(title: 'Ваш выбор:',
-                            backgroundColor: StColor.gray1_Color,
-                            content: Column(
-                              children: <Widget> [
-                                Container(
-                                  width: 355.0,
-                                  height: 56.0,
-                                  decoration:  BoxDecoration(
-                                    color: StColor.wBackGroundColor,
-                                    borderRadius: BorderRadius.only(topLeft: Radius.circular (16), topRight: Radius.circular (16) ),
-                                  ),
-                                  child: Center(
-                                    child: TextButton(
-                                      onPressed: () { controller.getImage(ImageSource.gallery); },
-                                      child: Text('Фотогалерея',
-                                        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, color: StColor.blue6_Color),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 3.0),
-
-                                Container(
-                                  width: 355.0,
-                                  height: 56.0,
-                                  decoration:  BoxDecoration(
-                                    color: StColor.wBackGroundColor,
-                                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular (16), bottomRight: Radius.circular (16) ),
-                                  ),
-                                  child: Center(
-                                    child: TextButton(
-                                      onPressed: () { controller.getImage(ImageSource.camera); },
-                                      child: Text('Камера',
-                                        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, color: StColor.blue6_Color),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 16.0),
-                                Container(
-                                  width: 355.0,
-                                  height: 56.0,
-                                  decoration:  BoxDecoration(
-                                    color: StColor.wBackGroundColor,
-                                    borderRadius: BorderRadius.circular(16),
-                                  ),
-                                  child: Center(
-                                    child: TextButton(
-                                      onPressed: () { Get.back(); },
-                                      child: Text('Отмена',
-                                        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, color: StColor.blue6_Color),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ));
+                        showModalBottomSheet(
+                            backgroundColor: Colors.transparent,
+                          context: (context),
+                          isScrollControlled: true,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.vertical(top: Radius.circular(18))
+                          ),
+                          builder: (context)=>   bottomSheet(context),
+                        
+                        );
                       },
                     ),
                     SizedBox(height: 24.0),
@@ -314,8 +270,152 @@ class MasterPersonalScreen extends GetView<AvatarImagesController> {
                   ],))
         ));
   }
-}
 
+  Widget bottomSheet(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Container(
+      //color: Colors.grey[600],
+      width: double.infinity,
+      height: size.height*0.31,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget> [
+          SizedBox(height: 5,),
+          Container(
+            width: 355.0,
+            height: 56.0,
+            decoration:  BoxDecoration(
+              color: StColor.wBackGroundColor,
+              borderRadius: BorderRadius.only(topLeft: Radius.circular (16), topRight: Radius.circular (16) ),
+            ),
+            child: Center(
+              child: TextButton(
+                onPressed: () { controller.getImage(ImageSource.gallery); },
+                child: Text('Фотогалерея',
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, color: StColor.blue6_Color),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 3.0),
+
+          Container(
+            width: 355.0,
+            height: 56.0,
+            decoration:  BoxDecoration(
+              color: StColor.wBackGroundColor,
+              borderRadius: BorderRadius.only(bottomLeft: Radius.circular (16), bottomRight: Radius.circular (16) ),
+            ),
+            child: Center(
+              child: TextButton(
+                onPressed: () { controller.getImage(ImageSource.camera); },
+                child: Text('Камера',
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, color: StColor.blue6_Color),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 16.0),
+          Container(
+            width: 355.0,
+            height: 56.0,
+            decoration:  BoxDecoration(
+              color: StColor.wBackGroundColor,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Center(
+              child: TextButton(
+                onPressed: () { Get.back(); },
+                child: Text('Отмена',
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, color: StColor.blue6_Color),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 10,),
+        ],
+
+
+      ),
+    );
+  }
+
+
+}
+/*                            Container(
+                              width: 100,
+                              child: Column(
+                                children: <Widget> [
+                                  TextButton(onPressed: (){}, child: Text('child1')),
+                                  TextButton(onPressed: (){}, child: Text('child2')),
+                                  TextButton(onPressed: (){}, child: Text('child3')),
+                                ],
+
+
+                              ),
+                            ));*/
+/*Container(
+                                    width: 355.0,
+                                    height: 56.0,
+                                    decoration:  BoxDecoration(
+                                      color: StColor.wBackGroundColor,
+                                      borderRadius: BorderRadius.only(topLeft: Radius.circular (16), topRight: Radius.circular (16) ),
+                                    ),
+                                    child: Center(
+                                      child: TextButton(
+                                        onPressed: () { controller.getImage(ImageSource.gallery); },
+                                        child: Text('Фотогалерея',
+                                          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, color: StColor.blue6_Color),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 3.0),
+
+                                  Container(
+                                    width: 355.0,
+                                    height: 56.0,
+                                    decoration:  BoxDecoration(
+                                      color: StColor.wBackGroundColor,
+                                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular (16), bottomRight: Radius.circular (16) ),
+                                    ),
+                                    child: Center(
+                                      child: TextButton(
+                                        onPressed: () { controller.getImage(ImageSource.camera); },
+                                        child: Text('Камера',
+                                          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, color: StColor.blue6_Color),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 16.0),
+                                  Container(
+                                    width: 355.0,
+                                    height: 56.0,
+                                    decoration:  BoxDecoration(
+                                      color: StColor.wBackGroundColor,
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
+                                    child: Center(
+                                      child: TextButton(
+                                        onPressed: () { Get.back(); },
+                                        child: Text('Отмена',
+                                          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, color: StColor.blue6_Color),
+                                        ),
+                                      ),
+                                    ),
+                                  ),*/
+
+
+/*Get.bottomSheet(Container(
+                          child: Column(
+                            children: [
+                              TextButton(onPressed: (){}, child: Text('child1')),
+                              TextButton(onPressed: (){}, child: Text('child2')),
+                              TextButton(onPressed: (){}, child: Text('child3')),
+                            ],
+                          ),  //// (t_odo: Show Bottom Sheet)
+                        ));*/
 /* image: const DecorationImage(
                                     image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
                                     fit: BoxFit.cover,
@@ -324,3 +424,63 @@ class MasterPersonalScreen extends GetView<AvatarImagesController> {
                                     color: Colors.black,
                                     width: 8,
                                   ),*/
+//backgroundColor: StColor.gray1_Color,
+/*
+
+content: Column(
+                              children: <Widget> [
+                                Container(
+                                  width: 355.0,
+                                  height: 56.0,
+                                  decoration:  BoxDecoration(
+                                    color: StColor.wBackGroundColor,
+                                    borderRadius: BorderRadius.only(topLeft: Radius.circular (16), topRight: Radius.circular (16) ),
+                                  ),
+                                  child: Center(
+                                    child: TextButton(
+                                      onPressed: () { controller.getImage(ImageSource.gallery); },
+                                      child: Text('Фотогалерея',
+                                        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, color: StColor.blue6_Color),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 3.0),
+
+                                Container(
+                                  width: 355.0,
+                                  height: 56.0,
+                                  decoration:  BoxDecoration(
+                                    color: StColor.wBackGroundColor,
+                                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular (16), bottomRight: Radius.circular (16) ),
+                                  ),
+                                  child: Center(
+                                    child: TextButton(
+                                      onPressed: () { controller.getImage(ImageSource.camera); },
+                                      child: Text('Камера',
+                                        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, color: StColor.blue6_Color),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 16.0),
+                                Container(
+                                  width: 355.0,
+                                  height: 56.0,
+                                  decoration:  BoxDecoration(
+                                    color: StColor.wBackGroundColor,
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Center(
+                                    child: TextButton(
+                                      onPressed: () { Get.back(); },
+                                      child: Text('Отмена',
+                                        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, color: StColor.blue6_Color),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+
+
+                            )*/

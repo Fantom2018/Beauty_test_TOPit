@@ -13,4 +13,4 @@ class MonthController extends GetxController {
     selected.value = value;
   }
 
-}
+} 
