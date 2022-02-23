@@ -9,6 +9,8 @@ import 'package:image_picker/image_picker.dart';
 
 
 class MasterPersonalScreen extends GetView<AvatarImagesController> {
+  File? pickedFile;
+  ImagePicker imagePicker = ImagePicker();
   @override
   AvatarImagesController controller =Get.put(AvatarImagesController());
 
@@ -50,12 +52,32 @@ class MasterPersonalScreen extends GetView<AvatarImagesController> {
                 child: Column(
                   children: [
                     const SizedBox(height: 24.0),
-                    Center(
-                      child: Hero(
-                        tag: 'logo',
-                        child: Container(
+
+                          Hero(
+                          tag: 'logo',
                           child:
-                          Obx(
+                          Container(
+                            child:
+                            Obx(
+                                  () => controller.selectedImagePath.value == ''
+                                  ? const CircleAvatar(
+                                    backgroundImage: AssetImage("images/ellipse100.png"),
+                                    backgroundColor: Colors.white,
+                                    radius: 50,
+                                  )
+                                  : ClipOval(
+                                child: Image.file(
+                                  File(controller.selectedImagePath.value),
+                                  height: 100,
+                                  width: 105,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                          /*Obx(
                                 () => controller.selectedImagePath.value == ''
                                 ? const Text(
                               'Select image ',
@@ -69,7 +91,38 @@ class MasterPersonalScreen extends GetView<AvatarImagesController> {
                                       fit: BoxFit.cover
                             ),
                                 ),
+                          ),*/
+                    /*
+                    * //
+                    *   /*Obx(() => Text(
+                            controller.selectedImageSize.value == ''
+                                ? ''
+                                : controller.selectedImageSize.value,
+                            style: TextStyle(fontSize: 20),
+                          )),*/
+
+
+                          //Image.asset('images/Ellipse100.png'),
+                          //height: 100,
+                          /*width: 100,
+                         decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/ellipse_100px.png"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),*/
+                    *
+                    *
+                    * Obx(() => CircleAvatar(
+                              backgroundImage: controller.selectedImagePath.value ==true? FileImage(File(controller.selectedImagePath.value)) as ImageProvider :AssetImage("images/ellipse100.png"),
+                              backgroundColor: Colors.white,
+                              radius: 50,
+                            ),
                           ),
+                    *
+                    * */
+
 
 
                           /*Obx(() => Text(
@@ -81,7 +134,8 @@ class MasterPersonalScreen extends GetView<AvatarImagesController> {
 
 
                           //Image.asset('images/Ellipse100.png'),
-                          height: 100,
+
+
                           /*width: 100,
                          decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
@@ -91,9 +145,9 @@ class MasterPersonalScreen extends GetView<AvatarImagesController> {
                               fit: BoxFit.cover,
                             ),
                           ),*/
-                        ),
-                      ),
-                    ),
+
+
+
                     SizedBox(height: 15.0),
                     InkWell(
                       child: SizedBox(

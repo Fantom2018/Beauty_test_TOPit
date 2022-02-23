@@ -12,7 +12,7 @@ class AvatarImagesController extends GetxController {
   final ImagePicker _picker = ImagePicker();
 
   void getImage(ImageSource imageSource) async {
-    final  image = await _picker.pickImage(source: ImageSource.gallery);
+    final  image = await _picker.pickImage(source: imageSource, imageQuality: 100);
     /*final XFile? photo = await _picker.pickImage(source: ImageSource.camera);*/
     if (image != null){
       selectedImagePath.value = image.path;
@@ -24,6 +24,7 @@ class AvatarImagesController extends GetxController {
         colorText: StColor.yellow9_Color,
       );
     }
+    Get.back();
   }
 }
 
